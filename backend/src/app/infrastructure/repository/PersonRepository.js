@@ -9,9 +9,12 @@ class PersonRepository {
 
   async createPerson(params) {
     const { PersonPersistentModel, Logger } = this.dependencies;
+
     let participationInfo = await PersonPersistentModel.participationInfo();
-    let currentPart = participationInfo.overallParticipation
+    let currentPart = participationInfo.overallParticipation;
+
     try {
+      
       if (currentPart >= 100 || currentPart + params.participation > 100) {
         let message = `Error on create Person: Current overall participation is ${currentPart}% and can't be higher than 100% [Inserted value: ${params.participation} || sum: ${currentPart+params.participation}]`;
         throw new Error(message);

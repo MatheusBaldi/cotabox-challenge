@@ -20,7 +20,7 @@ function GeneratePersonsMongoSchema(injection) {
           overallParticipation: {
             $sum: "$participation"            
           },
-          participants: { $sum: 1}
+          participants: { $sum: 1 }
         }
       }]).exec();
     return info[0];
