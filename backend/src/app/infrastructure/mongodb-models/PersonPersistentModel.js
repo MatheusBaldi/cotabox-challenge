@@ -12,8 +12,21 @@ function GeneratePersonsMongoSchema(injection) {
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
   });
+
+  personMongoSchema.static('participationInfo', async function(){
+    let info = await this.aggregate([{ 
+        $group: {
+          _id: null,
+          overallParticipation: {
+            $sum: "$participation"            
+          },
+          participants: { $sum: 1}
+        }
+      }]).exec();
+    return info[0];
+  });
   
-  return connection.model('person', personMongoSchema);
+  return connection.model('Person', personMongoSchema, 'persons');
 }
 
 module.exports = injection => GeneratePersonsMongoSchema(injection);
