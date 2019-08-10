@@ -10,11 +10,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td class="left">Carlos</td>
-      <td class="left">Moura</td>
-      <td>5%</td>
+    <tr v-for="(person, index) in findPersons" :key="person.id">
+      <td>{{ index }}</td>
+      <td class="left">{{ person.firstName }}</td>
+      <td class="left">{{ person.lastName }}</td>
+      <td>{{ person.participation }}</td>
     </tr>
   </tbody>
 </table>
@@ -22,11 +22,19 @@
 </template>
 
 <script>
+import gql from 'graphql-tag';
 export default {
-  asyncData(){
-    return{
-
-    }
+  apollo: {
+    findPersons: gql`
+      query {
+        findPersons {
+          id
+          firstName
+          lastName
+          participation
+        }
+      }
+    `
   },
   created(){
   

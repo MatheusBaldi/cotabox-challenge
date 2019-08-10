@@ -1,0 +1,16 @@
+mutation addPerson(
+    $firstName: String!
+    $lastName: String!
+    $participation: Int!
+) {
+    addPerson(
+        firstName: $firstName
+        lastName: $lastName
+        participation: $participation
+    ) {
+        id
+        firstName
+        lastName
+        participation
+    }
+}

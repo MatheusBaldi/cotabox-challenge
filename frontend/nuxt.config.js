@@ -53,7 +53,7 @@ export default {
     clientConfigs: {
       default: {
         // required
-        httpEndpoint: `127.0.0.1:4000/graphql`,
+        httpEndpoint: `http://127.0.0.1:4000/graphql`,
       },
     },
   },

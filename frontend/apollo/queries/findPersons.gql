@@ -1,0 +1,8 @@
+query findPersons($count: Int){
+    findPersons(count: $count){
+        id
+        firstName
+        lastName
+        participation
+    }
+}

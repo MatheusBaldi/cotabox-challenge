@@ -4,20 +4,39 @@
         <input  placeholder="First name" v-model="firstName"/>
         <input  placeholder="Last name" v-model="lastName"/>
         <input  placeholder="Participation" v-model="participation"/>
-        <button class="btn" plain>SEND</button>
+        <button @submit.prevent="" class="btn" plain>SEND</button>
     </div> 
   </div>
 </template>
 
 <script>
 export default {
-  asyncData(){
+
+
+  // apollo: {
+  //   createPerson: {
+      
+  //   }
+  // },
+  data(){
     return {
       firstName: '',
       lastName: '',
       participation: ''
     }
-  }
+  },
+  // methods: {
+  //   async addPerson() {
+  //     const result = await this.$apollo.mutate({
+  //       mutation: createPerson,
+  //       variables: {
+  //         firstName: this.firstName,
+  //         lastName: this.lastName,
+  //         participation: this.participation
+  //       }
+  //     })
+  //   }
+  // }
 
 }
 </script>
@@ -48,19 +67,27 @@ input, button {
 }
 @media only screen and (min-width: 0px) {
   input {width: 90%}
-  button {width: 25%}
+  button {width: 60%; font-size: 14px; padding: 10px;}
+}
+@media only screen and (min-width: 220px) {
+  input {width: 90%}
+  button {width: 40%; font-size: 14px; padding: 10px;}
+}
+@media only screen and (min-width: 350px) {
+  input {width: 90%}
+  button {width: 25%; font-size: 14px; padding: 10px;}
 }
 @media only screen and (min-width: 860px) {
   input {width: 25%}
-  button {width: 15%}
+  button {width: 20%; font-size: 18px;}
 }
 @media only screen and (min-width: 1000px) {
   input {width: 16%}
-  button {width: 8%}
+  button {width: 8%; font-size: 18px;}
 }
 @media only screen and (min-width: 1920px) {
   input {width: 16%}
-  button {width: 8%}
+  button {width: 8%; font-size: 18px;}
 }
 input {
   color: rgb(80, 75, 75);
@@ -71,7 +98,6 @@ input {
 button {
   color: #fff;
   font-weight: bold;
-  font-size: 18px;
   border-color: #fff;
   border-width: 2px;
   border-style: solid;

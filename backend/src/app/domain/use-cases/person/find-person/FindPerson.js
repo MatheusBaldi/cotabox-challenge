@@ -4,7 +4,15 @@ const dependencies = {
 
 const FindPersons = (data, injection) => {
   const { PersonRepository } = Object.assign({}, dependencies, injection);
-  return new PersonRepository(injection).findPersons();
+  let options = [
+    undefined,
+    undefined,
+    undefined,
+    data.count || undefined,
+    undefined
+  ];
+
+  return new PersonRepository(injection).findPersons(...options);
 };
 
 module.exports = FindPersons;
