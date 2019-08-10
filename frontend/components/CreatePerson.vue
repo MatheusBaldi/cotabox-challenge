@@ -1,19 +1,11 @@
 <template>
   <div class="header">
-    <el-row :gutter="20" type="flex" justify="center">
-      <el-col :span="4">
-        <input  placeholder="First name" v-model="firstName"></input>
-      </el-col>
-      <el-col :span="4">
-        <input  placeholder="Last name" v-model="lastName"></input>
-      </el-col>
-      <el-col :span="4">
-        <input  placeholder="Participation" v-model="participation"></input>
-      </el-col>
-      <el-col :span="2">
+    <div class="container">
+        <input  placeholder="First name" v-model="firstName"/>
+        <input  placeholder="Last name" v-model="lastName"/>
+        <input  placeholder="Participation" v-model="participation"/>
         <button class="btn" plain>SEND</button>
-      </el-col>
-    </el-row>
+    </div> 
   </div>
 </template>
 
@@ -21,9 +13,9 @@
 export default {
   asyncData(){
     return {
-      firstName,
-      lastName,
-      participation
+      firstName: '',
+      lastName: '',
+      participation: ''
     }
   }
 
@@ -31,28 +23,52 @@ export default {
 </script>
 
 <style scoped>
-.header, input, button{
-  height: 100%;
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+.header {
   width: 100%;
 }
-input, button{
+input, button {
   border-radius: 3px;
+  padding: 15px;
+  margin: 10px;
 }
-.header, button{
+.header, button {
   background-color: #00b8e2;
 }
-.header{
-  padding-top: 60px;
-  padding-bottom: 50px;
+.header {
+  width: 100%;
+  padding-top: 45px;
+  padding-bottom: 30px;
 }
-input{
+@media only screen and (min-width: 0px) {
+  input {width: 90%}
+  button {width: 25%}
+}
+@media only screen and (min-width: 860px) {
+  input {width: 25%}
+  button {width: 15%}
+}
+@media only screen and (min-width: 1000px) {
+  input {width: 16%}
+  button {width: 8%}
+}
+@media only screen and (min-width: 1920px) {
+  input {width: 16%}
+  button {width: 8%}
+}
+input {
   color: rgb(80, 75, 75);
   background-color: #fff;
   font-size: 14px;
-  padding: 20px;
   border-width: 0px;
 }
-button{
+button {
   color: #fff;
   font-weight: bold;
   font-size: 18px;
