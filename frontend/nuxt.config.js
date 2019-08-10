@@ -40,7 +40,23 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/apollo'
   ],
+  /*
+  ** Apollo module options
+  */
+  apollo: {
+    tokenExpires: 15,
+
+    errorHandler: '@/plugins/apollo-error-handler.js',
+
+    clientConfigs: {
+      default: {
+        // required
+        httpEndpoint: `127.0.0.1:4000/graphql`,
+      },
+    },
+  },
   /*
   ** Build configuration
   */

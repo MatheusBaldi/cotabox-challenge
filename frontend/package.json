@@ -12,8 +12,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
-    "element-ui": "^2.4.11"
+    "@nuxtjs/apollo": "^4.0.0-rc10",
+    "element-ui": "^2.4.11",
+    "graphql-tag": "^2.10.1",
+    "nuxt": "^2.0.0"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.27",

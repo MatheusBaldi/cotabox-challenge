@@ -16,7 +16,7 @@ const Logger = require('./utils/Logger');
 const mongo = require('./infrastructure/mongodb-models/index')();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 // Apply Middlewares
 app.use(helmet());
