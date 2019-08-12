@@ -8,7 +8,7 @@ const FindPersons = (data, injection) => {
     undefined,
     undefined,
     undefined,
-    data.count || undefined,
+    data.limit || undefined,
     undefined
   ];
 

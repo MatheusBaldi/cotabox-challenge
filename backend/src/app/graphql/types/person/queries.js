@@ -4,7 +4,7 @@ const FindPerson = require('../../../domain/use-cases/person/find-person/FindPer
 const typeDefs = gql`
   extend type Query {
   """Query to find all persons"""
-    findPersons (count: Int): [Person]
+    findPersons (limit: Int): [Person]
   }  
 `;
 
