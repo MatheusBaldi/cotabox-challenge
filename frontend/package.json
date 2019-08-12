@@ -13,9 +13,11 @@
   },
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.0-rc10",
+    "chart.js": "^2.8.0",
     "element-ui": "^2.4.11",
     "graphql-tag": "^2.10.1",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vue-chartjs": "^3.4.2"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.27",

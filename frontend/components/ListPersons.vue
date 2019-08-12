@@ -1,43 +1,79 @@
 <template>
+  <div>
+
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th class="left">First Name</th>
+          <th class="left">Last Name</th>
+          <th>Participation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(person, index) in findPersons" :key="person.id">
+          <td>{{ index }}</td>
+          <td class="left">{{ person.firstName }}</td>
+          <td class="left">{{ person.lastName }}</td>
+          <td>{{ person.participation }}%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ch-doughnut :chart-data="dataCollection"/>
+
+  </div>
   
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th class="left">First Name</th>
-      <th class="left">Last Name</th>
-      <th>Participation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="(person, index) in findPersons" :key="person.id">
-      <td>{{ index }}</td>
-      <td class="left">{{ person.firstName }}</td>
-      <td class="left">{{ person.lastName }}</td>
-      <td>{{ person.participation }}</td>
-    </tr>
-  </tbody>
-</table>
 
 </template>
 
 <script>
-import gql from 'graphql-tag';
+// import gql from 'graphql-tag';
+import findPersons from '../apollo/queries/findPersons.gql';
+
 export default {
   apollo: {
-    findPersons: gql`
-      query {
-        findPersons {
-          id
-          firstName
-          lastName
-          participation
-        }
-      }
-    `
+    findPersons: {
+      query: findPersons,
+      variables: {limit:5},
+      update: data => data.findPersons
+    }
   },
-  created(){
-  
+  methods: {
+    getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  },
+  // mounted(){
+
+  //   this.datacollection = this.dataCollection();
+  //   console.log(this.datacollection);
+  // },
+  computed:{
+    dataCollection(){
+      let data = {
+        labels: [],
+        datasets: []
+      }
+      let dataset = {
+          backgroundColor: [],
+          data: []
+      }
+      for (let person of this.findPersons) {
+        data.labels.push(`${person.firstName} ${person.lastName}`);
+        dataset.backgroundColor.push(this.getRandomColor());
+        dataset.data.push(person.participation);
+      }
+
+      data.datasets.push(dataset);
+      console.log(data);
+      return data;
+    }
   }
 }
 </script>

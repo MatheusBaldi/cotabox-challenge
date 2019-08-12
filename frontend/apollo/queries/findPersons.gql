@@ -1,5 +1,5 @@
-query findPersons($count: Int){
-    findPersons(count: $count){
+query findPersons($limit: Int){
+    findPersons(limit: $limit){
         id
         firstName
         lastName
