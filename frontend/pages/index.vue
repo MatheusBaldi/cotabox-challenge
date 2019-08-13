@@ -23,7 +23,6 @@ export default {
   },
   methods: {
     updateQuery(value){
-      alert('done1');
       this.update = value;
     }
   }
@@ -39,6 +38,6 @@ h1{
   margin: 50px auto 20px auto;
 }
 p{
-  margin-bottom: 0px;
+  margin-bottom: 60px;
 }
 </style>

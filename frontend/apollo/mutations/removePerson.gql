@@ -1,0 +1,8 @@
+mutation removePerson($id: ID!) {
+    removePerson(id: $id) {
+        id
+        firstName
+        lastName
+        participation
+    }
+}

@@ -1,83 +1,80 @@
 <template>
-  <div>
-    <ApolloQuery
-      :query="findPersons"
-      :variables="{ limit: 0 }"
-    >
-      <template ref="queryElement" v-slot="{ result: { loading, error, data }, query }">
-        <div class="container">
-          <div class="table">
-            <!-- Loading -->
-            <div v-if="loading" class="loading apollo">Loading...</div>
+  <div class="container">
+    <div class="table">
 
-            <!-- Error -->
-            <div v-else-if="error" class="error apollo">An error occurred</div>
+      <table>
 
-            <!-- Result -->
-            <div v-else-if="data" class="result apollo">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="left">First Name</th>
+            <th class="left">Last Name</th>
+            <th>Participation</th>
+          </tr>
+        </thead>
 
-              <table>
+        <tbody>
+          <tr @dblclick="removePerson(person.id)" v-for="(person, index) in findPersons" :key="person.id">
+            <td>{{ index+1 }}</td>
+            <td class="left">{{ person.firstName }}</td>
+            <td class="left">{{ person.lastName }}</td>
+            <td>{{ person.participation }}%</td>
+          </tr>
+        </tbody>
 
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th class="left">First Name</th>
-                    <th class="left">Last Name</th>
-                    <th>Participation</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <tr v-for="(person, index) in data.findPersons" :key="person.id">
-                    <td>{{ index }}</td>
-                    <td class="left">{{ person.firstName }}</td>
-                    <td class="left">{{ person.lastName }}</td>
-                    <td>{{ person.participation }}%</td>
-                  </tr>
-                </tbody>
-
-              </table>
-              
-            </div>
-
-            <!-- No result -->
-            <div v-else class="no-result apollo">No result :(</div>
-          </div>
-
-          <div class="chart">
-            <ch-doughnut :chart-data="dataCollection(data.findPersons)" :options="chartOptions"/>
-          </div> 
+      </table>
         
-        </div> 
-      </template>
+    </div>
 
-    </ApolloQuery>
+    <div class="chart">
+      <ch-doughnut :chart-data="dataCollection(findPersons)" :options="chartOptions"/>
+    </div> 
 
-  </div>
-  
+  </div>    
 
 </template>
 
 <script>
 import palette from 'google-palette';
-const findPersons = require('../apollo/queries/findPersons.gql');
+import findPersons from '../apollo/queries/findPersons.gql';
+import removePerson from '../apollo/mutations/removePerson.gql';
 
 export default {
+
   props: ['update'],
+
+  apollo: {
+
+    findPersons: {
+      query: findPersons,
+      variables: {limit:0},
+      update: data => data.findPersons,
+    }
+
+  },
+
   data() {
+
     return {
-      query: undefined,
       chartOptions: {
-        maintainAspectRatio: false,        
+
+        // Chart config
+        maintainAspectRatio: true,        
         responsive: true,
+
+        // Legend config
         legend: {
+
           display: true,
           position: 'right',
           align: 'center',
+          
           labels: {
+
             boxWidth: 12,
             padding: 20,
             generateLabels(chart){
+
               let labels = [];
               let labelsText = chart.data.labels;
 
@@ -96,10 +93,28 @@ export default {
             }
           }
         }
+
       }
+
     }
   },
+
   methods: {
+    
+
+    removePerson(personId){
+      this.$apollo.mutate({
+        mutation: removePerson,
+        variables: {
+          id: personId
+        }
+      });
+      this.$apollo.queries.findPersons.refetch();
+    },
+
+    
+
+    // Adjust data items to Chatjs' data format
     dataCollection(queryData){
       let data = {
         labels: [],
@@ -112,39 +127,45 @@ export default {
         data: [],
       }
 
+      // One label for each person
       for (let person of queryData) {
         data.labels.push(`${person.firstName} ${person.lastName}`);
         dataset.data.push(person.participation);
       }
 
+      // Get the total participation sum
       let overallParticipation = dataset.data
         .reduce((accumulator, value) => accumulator + value);
 
+      // Apply a color to each label
       dataset.backgroundColor = palette('mpn65', dataset.data.length)
         .map(hex => '#' + hex);
 
+      // Create new label with dark grey background color if participation is lower than 100
       if (overallParticipation < 100) {
         let notAssigned = 100 - overallParticipation;
-
+        
         data.labels.push('Not Assigned');
         dataset.data.push(notAssigned);
         dataset.backgroundColor.push('rgb(90, 90, 90)');
       }      
 
       data.datasets.push(dataset);
+
       return data;
     }
   },
-  watch: { 
-    update: function(newVal, oldVal) { 
-      if (newVal) {
-        this.$emit('update');
-        this.$emit('updated');
-        alert('updated');
 
+  watch: { 
+    // Refetch query when on new Person input
+    update: function(value, oldValue) { 
+      if (value) {
+        this.$emit('updated');
+        this.$apollo.queries.findPersons.refetch();
       }
     }
   }
+
 }
 </script>
 
@@ -156,14 +177,14 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
+  width: 100%;
 }
-.table{
-  margin-right: 60px;
+.table, .chart{
+  margin-right: 50px;
+  margin-left: 50px;
 }
 .chart{
-  height: 200px;
-  margin-right: 60px;
-  margin-left: 60px;
+  height: 300px;
 }
 table {
   border-collapse: collapse;

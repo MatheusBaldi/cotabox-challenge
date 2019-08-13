@@ -7,15 +7,16 @@
         lastName,
         participation
       }"
+      @done="onDone()"
     >
 
       <template :disabled="loading" v-slot="{ mutate, loading, error }">
         
-        <div class="container">
-            <input  placeholder="First name" v-model="firstName"/>
-            <input  placeholder="Last name" v-model="lastName"/>
-            <input  placeholder="Participation" v-model.number="participation"/>
-            <button @click.prevent="mutate()" class="btn" plain>SEND</button>
+        <div @keypress.enter="send(mutate)" class="container">
+            <input  placeholder="First name" v-model="firstName" required/>
+            <input  placeholder="Last name" v-model="lastName" required/>
+            <input  placeholder="Participation" v-model.number="participation" required/>
+            <button @click.prevent="send(mutate)" class="btn" plain>SEND</button>
 
             <p v-if="error">An error occurred: {{ error }}</p>
         </div> 
@@ -33,6 +34,17 @@ export default {
       firstName: '',
       lastName: '',
       participation: ''
+    }
+  },
+  methods: {
+    send(mutate){
+      mutate();
+      this.firstName = '';
+      this.lastName = '';
+      this.participation = '';
+    },
+    onDone(){
+      this.$emit('done');
     }
   }
 }
