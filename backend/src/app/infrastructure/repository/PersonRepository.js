@@ -10,11 +10,13 @@ class PersonRepository {
   async createPerson(params) {
     const { PersonPersistentModel, Logger } = this.dependencies;
 
+    // Get general participation info
     let participationInfo = await PersonPersistentModel.participationInfo();
     let currentPart = participationInfo.overallParticipation;
 
     try {
       
+      // Raises an error if the sum of all participations plus the new input is higher than 100
       if (currentPart >= 100 || currentPart + params.participation > 100) {
         let message = `Error on create Person: Current overall participation is ${currentPart}% and can't be higher than 100% [Inserted value: ${params.participation} || sum: ${currentPart+params.participation}]`;
         throw new Error(message);
@@ -40,7 +42,7 @@ class PersonRepository {
     }
   }
 
-  findPersons(
+  async findPersons(
     where = {},
     select = null,
     skip = 0,
@@ -48,13 +50,18 @@ class PersonRepository {
     sort = { created_at: -1 },
   ) {
     const { PersonPersistentModel } = this.dependencies;
-    return PersonPersistentModel
+    return await PersonPersistentModel
       .find(where)
       .skip(skip)
       .limit(limit)
       .select(select || {})
       .sort(sort)
       .exec();
+  }
+
+  async deletePerson(id){
+    const { PersonPersistentModel } = this.dependencies;
+    return await PersonPersistentModel.findByIdAndDelete(id).exec();
   }
 }
 
