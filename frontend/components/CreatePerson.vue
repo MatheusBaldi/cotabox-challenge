@@ -1,43 +1,40 @@
 <template>
   <div class="header">
-    <div class="container">
-        <input  placeholder="First name" v-model="firstName"/>
-        <input  placeholder="Last name" v-model="lastName"/>
-        <input  placeholder="Participation" v-model="participation"/>
-        <button @submit.prevent="" class="btn" plain>SEND</button>
-    </div> 
+    <ApolloMutation
+      :mutation="require('../apollo/mutations/addPerson.gql')"
+      :variables="{
+        firstName,
+        lastName,
+        participation
+      }"
+    >
+
+      <template :disabled="loading" v-slot="{ mutate, loading, error }">
+        
+        <div class="container">
+            <input  placeholder="First name" v-model="firstName"/>
+            <input  placeholder="Last name" v-model="lastName"/>
+            <input  placeholder="Participation" v-model.number="participation"/>
+            <button @click.prevent="mutate()" class="btn" plain>SEND</button>
+
+            <p v-if="error">An error occurred: {{ error }}</p>
+        </div> 
+
+      </template>
+
+    </ApolloMutation>
   </div>
 </template>
 
 <script>
 export default {
-
-
-  // apollo: {
-  //   createPerson: {
-      
-  //   }
-  // },
-  data(){
+  data() {
     return {
       firstName: '',
       lastName: '',
       participation: ''
     }
-  },
-  // methods: {
-  //   async addPerson() {
-  //     const result = await this.$apollo.mutate({
-  //       mutation: createPerson,
-  //       variables: {
-  //         firstName: this.firstName,
-  //         lastName: this.lastName,
-  //         participation: this.participation
-  //       }
-  //     })
-  //   }
-  // }
-
+  }
 }
 </script>
 
@@ -54,7 +51,7 @@ export default {
 }
 input, button {
   border-radius: 3px;
-  padding: 15px;
+  padding: 18px;
   margin: 10px;
 }
 .header, button {
@@ -79,10 +76,10 @@ input, button {
 }
 @media only screen and (min-width: 860px) {
   input {width: 25%}
-  button {width: 20%; font-size: 18px;}
+  button {width: 15%; font-size: 18px;}
 }
 @media only screen and (min-width: 1000px) {
-  input {width: 16%}
+  input {width: 18%}
   button {width: 8%; font-size: 18px;}
 }
 @media only screen and (min-width: 1920px) {

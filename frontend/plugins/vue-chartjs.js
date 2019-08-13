@@ -7,6 +7,10 @@ Vue.component('ch-doughnut', {
   extends: Doughnut,
   mixins: [reactiveProp],
   props: ['options'],
+  styles: {
+    height: '250px',
+    position: 'relative'
+  },
   mounted() {
     this.renderChart(this.chartData, this.options);
   },
