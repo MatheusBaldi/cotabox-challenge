@@ -30,7 +30,8 @@ export default {
   */
   plugins: [
     '@/plugins/element-ui',
-    { src: '@/plugins/vue-chartjs.js', ssr: false }
+    '@/plugins/Vuelidate',
+    { src: '@/plugins/vue-chartjs', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
