@@ -12,13 +12,19 @@ class PersonRepository {
 
     // Get general participation info
     let participationInfo = await PersonPersistentModel.participationInfo();
-    let currentPart = participationInfo.overallParticipation;
+
+    let currentPart;
+    if (participationInfo) {
+      currentPart = participationInfo.overallParticipation;
+    } else {
+      currentPart = 0;
+    }
 
     try {
       
       // Raises an error if the sum of all participations plus the new input is higher than 100
       if (currentPart >= 100 || currentPart + params.participation > 100) {
-        let message = `Error on create Person: Current overall participation is ${currentPart}% and can't be higher than 100% [Inserted value: ${params.participation} || sum: ${currentPart+params.participation}]`;
+        let message = `Current overall participation is ${currentPart}% and can't be higher than 100% [Inserted value: ${params.participation} || sum: ${currentPart+params.participation}]`;
         throw new Error(message);
       }
 
