@@ -79,8 +79,8 @@
               </div>
 
               <div class="form-control">
+                  <!-- :disabled="$v.firstName.$invalid || $v.lastName.$invalid || $v.participation.$invalid"  -->
                 <button 
-                  :disable="$v.firstName.$invalid || $v.lastName.$invalid || $v.participation.$invalid" 
                   @click.prevent="send(mutate)" 
                   class="btn" 
                   plain
@@ -141,7 +141,7 @@ export default {
   methods: {
     // Control input fields validation
     send(mutate){
-      if (!this.$v.firstName.$invalid || !this.$v.lastName.$invalid || !this.$v.participation.$invalid){
+      if (!this.$v.firstName.$invalid && !this.$v.lastName.$invalid && !this.$v.participation.$invalid){
         mutate();
         this.firstName = '';
         this.lastName = '';
@@ -149,8 +149,11 @@ export default {
         this.$v.firstName.$reset();
         this.$v.lastName.$reset();
         this.$v.participation.$reset();
-        
-      }      
+      } else {
+        this.$v.firstName.$touch();
+        this.$v.lastName.$touch();
+        this.$v.participation.$touch();
+      }
     },
     // Send event to CreatePerson parent for done event on ApolloMutation component
     onDone(){

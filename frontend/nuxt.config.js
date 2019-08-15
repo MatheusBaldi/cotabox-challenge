@@ -12,7 +12,7 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
     ]
   },
   /*
@@ -55,7 +55,7 @@ export default {
     clientConfigs: {
       default: {
         // required
-        httpEndpoint: `http://127.0.0.1:4000/graphql`,
+        httpEndpoint: process.env.API_URI || `http://127.0.0.1:4000/graphql`,
       },
     },
   },
