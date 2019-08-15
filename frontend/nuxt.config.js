@@ -60,6 +60,10 @@ export default {
     },
   },
   /*
+  ** Server Middleware
+  */
+  serverMiddleware: ['@/server/src/app/server.js'],
+  /*
   ** Build configuration
   */
   build: {
