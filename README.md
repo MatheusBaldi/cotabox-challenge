@@ -22,12 +22,15 @@ For the frontend I opted on using the following tools:
 * [Mongoose](https://mongoosejs.com/)
 
 
+---
+
 ## Deployment
 The application was deployed to Heroku and is available [**here**](https://cotabox-challenge.herokuapp.com/)
 
+---
+
 
 ## Run locally
-
 
 
 **The backend must be run before the frontend**
@@ -36,7 +39,6 @@ The application was deployed to Heroku and is available [**here**](https://cotab
 
 By default the database connection will be configured as `mongodb://127.0.0.1:27017/local_db`, but you can use a `.env` file to change it. There is a `.env-example` file in the root directory for convenience. The `PORT` variable should not be changed.
 
----
 
 ### Get the project
 
@@ -45,7 +47,6 @@ git clone https://github.com/MatheusBaldi/cotabox-challenge.git
 cd cotabox-challenge 
 ```
 
----
 
 ### Backend
 
@@ -58,7 +59,6 @@ npm i
 npm start
 ```
 
----
 
 ### Frontend
 
@@ -71,6 +71,5 @@ npm i
 npm run local
 ```
 
----
 
 Everything should be working now, you should be able to access the application on `http://127.0.0.1:3000/`
