@@ -4,10 +4,10 @@ This repository is my answer to the [Cotabox Fullstack Developer Challenge](http
 
 ## Frontend
 * For the frontend I opted on using the following tools:
-* [Nuxt](https://nuxtjs.org/)
-    * [Vue]()
-    * [Nuxt Vue Apollo Module](https://github.com/nuxt-community/apollo-module)
-        * [Vue Apollo Docs](https://vue-apollo.netlify.com/guide/)
+* [NuxtJS](https://nuxtjs.org/)
+* [VueJS](https://vuejs.org/)
+* [Nuxt Vue Apollo Module](https://github.com/nuxt-community/apollo-module)
+    * [Vue Apollo Docs](https://vue-apollo.netlify.com/guide/)
 * [VueChart.js](https://vue-chartjs.org/)
     * [Chart.js](https://www.chartjs.org/)
 * [Vuelidate](https://vuelidate.netlify.com/)
@@ -19,3 +19,8 @@ This repository is my answer to the [Cotabox Fullstack Developer Challenge](http
 * [GraphQL](https://graphql.org/)
 * [MongoDB](https://www.mongodb.com)
 * [Mongoose](https://mongoosejs.com/)
+
+
+## Deployment
+The application was deployed to Heroku and is available [here](https://cotabox-challenge.herokuapp.com/) (https://cotabox-challenge.herokuapp.com/)
+

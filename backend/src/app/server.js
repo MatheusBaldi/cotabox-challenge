@@ -15,8 +15,10 @@ const compression = require('compression');
 const Logger = require('./utils/Logger');
 const mongo = require('./infrastructure/mongodb-models/index')();
 
+// Load .env if in develepment
+const env = require('../../config');
+
 const app = express();
-const PORT = process.env.PORT || 4000;
 
 // Apply Middlewares
 app.use(helmet());
@@ -45,9 +47,9 @@ server.applyMiddleware({
 
 app.listen(
   {
-    port: PORT
+    port: env.PORT
   },
   () => {
-    Logger.info(`Apollo GraphQL Server Express running on port ${PORT}`);
+    Logger.info(`Apollo GraphQL Server Express running on port ${env.PORT}`);
   }
 );

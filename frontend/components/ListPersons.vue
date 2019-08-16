@@ -78,7 +78,7 @@ export default {
 
       // Initial chart values
       chart: {
-        height: 230,
+        height: 265,
         width: 600,
       },
 
@@ -225,14 +225,14 @@ export default {
     handleResize() {
       // Width
       if (window.innerWidth > 1280){
-        this.chart.width = window.innerWidth*.30;
+        this.chart.width = 450;
       } else if (window.innerWidth <= 600 && window.innerWidth >= 300 ) {
         this.chart.width = window.innerWidth;
       }
 
       // Height: 
-      if (this.numLabels > 6){
-        this.chart.height = 230 + 35*(this.numLabels - 6);
+      if (this.numLabels > 7){
+        this.chart.height = 265 + 35*(this.numLabels - 7);
       }
     }
   },

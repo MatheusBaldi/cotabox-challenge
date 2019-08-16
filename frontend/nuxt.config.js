@@ -31,7 +31,7 @@ export default {
   plugins: [
     '@/plugins/element-ui',
     '@/plugins/Vuelidate',
-    { src: '@/plugins/vue-chartjs', ssr: false }
+    '@/plugins/vue-chartjs'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -62,7 +62,7 @@ export default {
   /*
   ** Server Middleware
   */
-  serverMiddleware: ['@/server/src/app/server.js'],
+  // serverMiddleware: ['@/server/src/app/server.js'],
   /*
   ** Build configuration
   */
