@@ -12,6 +12,6 @@ module.exports = {
   DB_PASSWORD: process.env.DB_PASSWORD || '',
   DB_HOST: process.env.DB_HOST || 'localhost',
   DB_PORT: process.env.DB_PORT || '27017',
-  DB_NAME: process.env.DB_NAME || 'test',
+  DB_NAME: process.env.DB_NAME || 'local_db',
   PORT: process.env.PORT || '4000'
 };
