@@ -43,9 +43,8 @@ cd cotabox-challenge // Project's root directory
 
 ### Backend
 
-
+In the project's root directory
 ```
-// In the project's root directory
 cd backend
 npm i
 npm start
@@ -53,9 +52,11 @@ npm start
 
 ### Frontend
 
+In the project's root directory
 ```
-//In the project's root directory
 cd frontend
 npm i
 npm run dev
 ```
+
+Everything should be working now, you should be able to access the application on http://127.0.0.1:3000/
