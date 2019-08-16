@@ -5,7 +5,7 @@ let singleConnection = null;
 
 const connectionConfig = {
   development: {
-    URI: `${env.DB_DRIVE}://${env.DB_HOST}:${env.DB_PORT}`,
+    URI: `${env.DB_DRIVE}://${env.DB_HOST}${env.DB_DRIVE==='mongo+srv'?`:${env.DB_PORT}`:''}`,
     options: {
       poolSize: 5,
       autoIndex: true,
@@ -16,7 +16,7 @@ const connectionConfig = {
     },
   },
   production: {
-    URI: `${env.DB_DRIVE}://${env.DB_HOST}`,
+    URI: `${env.DB_DRIVE}://${env.DB_HOST}${env.DB_DRIVE==='mongo+srv'?`:${env.DB_PORT}`:''}`,
     options: {
       poolSize: 5,
       autoIndex: true,

@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const result = dotenv.config({silent: true})
 
-if (result.error && !(process.env.NODE_ENV==='production')) throw result.error;
+// if (result.error && !(process.env.NODE_ENV==='production')) throw result.error;
 
 module.exports = {
   NODE_ENV: process.env.NODE_ENV || 'development',

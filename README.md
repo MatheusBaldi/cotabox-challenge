@@ -3,10 +3,10 @@
 This repository is my project for the [Cotabox Fullstack Developer Challenge](https://github.com/Cotabox/fullstack-challenge). The link provide more information about the challenge and its rules.
 
 ## Frontend
-* For the frontend I opted on using the following tools:
+For the frontend I opted on using the following tools:
 * [NuxtJS](https://nuxtjs.org/)
 * [VueJS](https://vuejs.org/)
-* [Nuxt Vue Apollo Module](https://github.com/nuxt-community/apollo-module)
+* [Nuxt Vue ApolloClient Module](https://github.com/nuxt-community/apollo-module)
     * [Vue Apollo Docs](https://vue-apollo.netlify.com/guide/)
 * [VueChart.js](https://vue-chartjs.org/)
     * [Chart.js](https://www.chartjs.org/)
@@ -14,6 +14,7 @@ This repository is my project for the [Cotabox Fullstack Developer Challenge](ht
 
 
 ## Backend
+
 * [Express.js](https://expressjs.com/)
 * [Apollo Server](https://www.apollographql.com/docs/apollo-server/)
 * [GraphQL](https://graphql.org/)
@@ -27,18 +28,19 @@ The application was deployed to Heroku and is available [**here**](https://cotab
 
 ## Run locally
 
-Make sure the ports 3000 and 4000 are available
 
-The backend must be run before the frontend
+
+**The backend must be run before the frontend**
 
 [MongoDB](https://www.mongodb.com) must be installed locally
 
+By default the database will connection be configured as mongodb://127.0.0.1:27017/local_db, but you can use a `.env` file to change it. There is a `.env-example` file in the root directory for convenience.
 
 ### Get the project
 
 ```
 git clone https://github.com/MatheusBaldi/cotabox-challenge.git
-cd cotabox-challenge // Project's root directory
+cd cotabox-challenge 
 ```
 
 ### Backend
