@@ -22,12 +22,10 @@ For the frontend I opted on using the following tools:
 * [Mongoose](https://mongoosejs.com/)
 
 
----
 
 ## Deployment
 The application was deployed to Heroku and is available [**here**](https://cotabox-challenge.herokuapp.com/)
 
----
 
 
 ## Run locally
