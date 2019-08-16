@@ -1,6 +1,6 @@
 # Cotabox Challenge
 
-This repository is my answer to the [Cotabox Fullstack Developer Challenge](https://github.com/Cotabox/fullstack-challenge). The link provide more information about the challenge and its rules.
+This repository is my project for the [Cotabox Fullstack Developer Challenge](https://github.com/Cotabox/fullstack-challenge). The link provide more information about the challenge and its rules.
 
 ## Frontend
 * For the frontend I opted on using the following tools:
@@ -22,5 +22,40 @@ This repository is my answer to the [Cotabox Fullstack Developer Challenge](http
 
 
 ## Deployment
-The application was deployed to Heroku and is available [here](https://cotabox-challenge.herokuapp.com/) (https://cotabox-challenge.herokuapp.com/)
+The application was deployed to Heroku and is available [**here**](https://cotabox-challenge.herokuapp.com/)
 
+
+## Run locally
+
+Make sure the ports 3000 and 4000 are available
+
+The backend must be run before the frontend
+
+[MongoDB](https://www.mongodb.com) must be installed locally
+
+
+### Get the project
+
+```
+git clone https://github.com/MatheusBaldi/cotabox-challenge.git
+cd cotabox-challenge // Project's root directory
+```
+
+### Backend
+
+
+```
+// In the project's root directory
+cd backend
+npm i
+npm start
+```
+
+### Frontend
+
+```
+//In the project's root directory
+cd frontend
+npm i
+npm run dev
+```

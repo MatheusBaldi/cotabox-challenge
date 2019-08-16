@@ -12,6 +12,5 @@ module.exports = {
   DB_HOST: process.env.DB_HOST || 'localhost',
   DB_PORT: process.env.DB_PORT || '27017',
   DB_NAME: process.env.DB_NAME || 'test',
-  API_URI: process.env.API_URI || '/graphql',
   PORT: process.env.PORT || '4000'
 };
